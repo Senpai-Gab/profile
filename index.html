@@ -258,49 +258,268 @@
         transform: translateY(-1px);
       }
 
+      /* ===========================
+       NAV TOGGLER
+      =========================== */
       .nav-toggler {
         display: none;
-        background: none;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        background: rgba(0, 0, 0, 0.06);
         border: none;
         cursor: pointer;
-        padding: 6px;
-        border-radius: 8px;
+        border-radius: 12px;
         color: var(--text-primary);
-        font-size: 20px;
+        font-size: 18px;
+        transition: background 0.2s ease, transform 0.2s ease;
+        position: relative;
+        z-index: 1201;
+        flex-shrink: 0;
       }
 
+      .nav-toggler:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-toggler.is-open {
+        background: rgba(0, 0, 0, 0.08);
+      }
+
+      /* Hamburger icon lines */
+      .hamburger-lines {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        width: 18px;
+      }
+
+      .hamburger-lines span {
+        display: block;
+        height: 2px;
+        background: var(--text-primary);
+        border-radius: 2px;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.3s ease,
+                    width 0.3s ease;
+        transform-origin: center;
+      }
+
+      .hamburger-lines span:nth-child(1) { width: 18px; }
+      .hamburger-lines span:nth-child(2) { width: 12px; }
+      .hamburger-lines span:nth-child(3) { width: 18px; }
+
+      .nav-toggler.is-open .hamburger-lines span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+        width: 18px;
+      }
+      .nav-toggler.is-open .hamburger-lines span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .nav-toggler.is-open .hamburger-lines span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+        width: 18px;
+      }
+
+      /* ===========================
+       MOBILE MENU — FULL OVERLAY
+      =========================== */
       .mobile-menu {
-        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 1200;
+        display: flex;
+        flex-direction: column;
+        pointer-events: none;
+      }
+
+      /* Backdrop */
+      .mobile-menu-backdrop {
         position: absolute;
-        top: calc(100% + 8px);
+        inset: 0;
+        background: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+        transition: background 0.4s ease, backdrop-filter 0.4s ease;
+      }
+
+      /* Drawer panel slides up from bottom */
+      .mobile-menu-panel {
+        position: absolute;
+        bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(255, 255, 255, 0.92);
-        backdrop-filter: var(--blur-glass);
-        border: var(--border-glass);
-        border-radius: 16px;
-        padding: 12px;
-        box-shadow: var(--shadow-lg);
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(32px) saturate(200%);
+        -webkit-backdrop-filter: blur(32px) saturate(200%);
+        border-top-left-radius: 28px;
+        border-top-right-radius: 28px;
+        padding: 0 0 calc(env(safe-area-inset-bottom, 0px) + 24px);
+        box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.12);
+        transform: translateY(110%);
+        transition: transform 0.45s cubic-bezier(0.32, 1, 0.45, 1);
+        border-top: 1px solid rgba(255, 255, 255, 0.9);
       }
 
-      .mobile-menu.open {
-        display: block;
+      /* Drag handle pill */
+      .mobile-menu-handle {
+        display: flex;
+        justify-content: center;
+        padding: 12px 0 4px;
       }
 
-      .mobile-menu a {
-        display: block;
-        padding: 10px 16px;
+      .mobile-menu-handle::after {
+        content: "";
+        width: 36px;
+        height: 4px;
+        background: rgba(0, 0, 0, 0.12);
+        border-radius: 4px;
+      }
+
+      /* Top row: brand + close */
+      .mobile-menu-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 24px 16px;
+      }
+
+      .mobile-menu-brand {
+        font-size: 17px;
+        font-weight: 800;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
         text-decoration: none;
+      }
+
+      .mobile-menu-close {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.07);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
         color: var(--text-primary);
-        font-size: 14px;
-        font-weight: 500;
-        border-radius: 10px;
         transition: background 0.2s;
       }
 
-      .mobile-menu a:hover {
-        background: rgba(0, 0, 0, 0.05);
+      .mobile-menu-close:hover { background: rgba(0,0,0,0.12); }
+
+      /* Nav grid */
+      .mobile-nav-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 0 16px 16px;
       }
+
+      .mobile-nav-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 18px 12px;
+        background: rgba(0, 0, 0, 0.04);
+        border-radius: 18px;
+        text-decoration: none;
+        color: var(--text-primary);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: -0.1px;
+        transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+        border: 1px solid rgba(0, 0, 0, 0.04);
+      }
+
+      .mobile-nav-link:hover,
+      .mobile-nav-link:active {
+        background: rgba(0, 0, 0, 0.08);
+        transform: scale(0.97);
+      }
+
+      .mobile-nav-link .nav-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        color: #fff;
+        flex-shrink: 0;
+      }
+
+      .mobile-nav-link:nth-child(1) .nav-icon { background: linear-gradient(135deg, #667eea, #764ba2); }
+      .mobile-nav-link:nth-child(2) .nav-icon { background: linear-gradient(135deg, #0071e3, #06b6d4); }
+      .mobile-nav-link:nth-child(3) .nav-icon { background: linear-gradient(135deg, #f093fb, #f5576c); }
+      .mobile-nav-link:nth-child(4) .nav-icon { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+      .mobile-nav-link:nth-child(5) .nav-icon { background: linear-gradient(135deg, #fa8231, #f7b733); }
+
+      /* Contact CTA — full width */
+      .mobile-nav-cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 0 16px;
+        padding: 16px;
+        background: var(--text-primary);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 16px;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.2px;
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+
+      .mobile-nav-cta:hover {
+        background: #333;
+        color: #fff;
+        transform: scale(0.98);
+      }
+
+      /* Open state */
+      .mobile-menu.open {
+        pointer-events: all;
+      }
+
+      .mobile-menu.open .mobile-menu-backdrop {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(4px);
+      }
+
+      .mobile-menu.open .mobile-menu-panel {
+        transform: translateY(0);
+      }
+
+      /* Stagger nav item entrance */
+      .mobile-nav-link,
+      .mobile-nav-cta {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: background 0.2s ease, transform 0.3s ease, opacity 0.3s ease, color 0.2s ease;
+      }
+
+      .mobile-menu.open .mobile-nav-link,
+      .mobile-menu.open .mobile-nav-cta {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mobile-menu.open .mobile-nav-link:nth-child(1) { transition-delay: 0.08s; }
+      .mobile-menu.open .mobile-nav-link:nth-child(2) { transition-delay: 0.12s; }
+      .mobile-menu.open .mobile-nav-link:nth-child(3) { transition-delay: 0.16s; }
+      .mobile-menu.open .mobile-nav-link:nth-child(4) { transition-delay: 0.20s; }
+      .mobile-menu.open .mobile-nav-link:nth-child(5) { transition-delay: 0.24s; }
+      .mobile-menu.open .mobile-nav-cta       { transition-delay: 0.28s; }
 
       /* ===========================
        SECTION WRAPPER
@@ -1403,6 +1622,8 @@
         }
         .nav-toggler {
           display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .navbar {
           width: calc(100% - 32px);
@@ -1732,7 +1953,7 @@
     <!-- NAVBAR -->
     <nav class="navbar" aria-label="Main navigation">
       <div class="navbar-inner" id="navbarInner">
-        <a href="#hero" class="nav-brand">GVV.</a>
+        <a href="#hero" class="nav-brand me-3">GVV.</a>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
@@ -1741,19 +1962,55 @@
           <li><a href="#education">Education</a></li>
           <li><a href="#contact" class="nav-cta">Contact</a></li>
         </ul>
-        <button class="nav-toggler" id="navToggler" aria-label="Toggle menu">
-          <i class="bi bi-list"></i>
+        <!-- Animated hamburger button -->
+        <button class="nav-toggler" id="navToggler" aria-label="Toggle menu" aria-expanded="false">
+          <span class="hamburger-lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
         </button>
-        <div class="mobile-menu" id="mobileMenu">
-          <a href="#about" class="mobile-nav-link">About</a>
-          <a href="#skills" class="mobile-nav-link">Skills</a>
-          <a href="#experience" class="mobile-nav-link">Experience</a>
-          <a href="#projects" class="mobile-nav-link">Projects</a>
-          <a href="#education" class="mobile-nav-link">Education</a>
-          <a href="#contact" class="mobile-nav-link">Contact</a>
-        </div>
       </div>
     </nav>
+
+    <!-- Mobile full-screen overlay menu (outside navbar so it covers full viewport) -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
+      <div class="mobile-menu-panel">
+        <div class="mobile-menu-handle"></div>
+        <div class="mobile-menu-header">
+          <a href="#hero" class="mobile-menu-brand" id="mobileBrandLink">GVV.</a>
+          <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div class="mobile-nav-grid">
+          <a href="#about"      class="mobile-nav-link">
+            <span class="nav-icon"><i class="bi bi-person-fill"></i></span>
+            About
+          </a>
+          <a href="#skills"     class="mobile-nav-link">
+            <span class="nav-icon"><i class="bi bi-lightning-charge-fill"></i></span>
+            Skills
+          </a>
+          <a href="#experience" class="mobile-nav-link">
+            <span class="nav-icon"><i class="bi bi-briefcase-fill"></i></span>
+            Experience
+          </a>
+          <a href="#projects"   class="mobile-nav-link">
+            <span class="nav-icon"><i class="bi bi-grid-fill"></i></span>
+            Projects
+          </a>
+          <a href="#education"  class="mobile-nav-link">
+            <span class="nav-icon"><i class="bi bi-mortarboard-fill"></i></span>
+            Education
+          </a>
+        </div>
+        <a href="#contact" class="mobile-nav-cta" id="mobileContactLink">
+          <i class="bi bi-send-fill"></i> Get in Touch
+        </a>
+      </div>
+    </div>
 
     <!-- HERO SECTION -->
     <section id="hero" class="section-wrap">
@@ -3031,31 +3288,47 @@
       });
 
       // ==============================
-      // MOBILE MENU
+      // MOBILE MENU — OVERLAY DRAWER
       // ==============================
-      const toggler = document.getElementById("navToggler");
-      const mobileMenu = document.getElementById("mobileMenu");
+      const toggler       = document.getElementById("navToggler");
+      const mobileMenu    = document.getElementById("mobileMenu");
+      const backdrop      = document.getElementById("mobileMenuBackdrop");
+      const closeBtn      = document.getElementById("mobileMenuClose");
+      const mobileBrand   = document.getElementById("mobileBrandLink");
+      const mobileContact = document.getElementById("mobileContactLink");
+
+      function openMenu() {
+        mobileMenu.classList.add("open");
+        mobileMenu.setAttribute("aria-hidden", "false");
+        toggler.classList.add("is-open");
+        toggler.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMenu() {
+        mobileMenu.classList.remove("open");
+        mobileMenu.setAttribute("aria-hidden", "true");
+        toggler.classList.remove("is-open");
+        toggler.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
 
       toggler.addEventListener("click", () => {
-        mobileMenu.classList.toggle("open");
-        const icon = toggler.querySelector("i");
-        icon.className = mobileMenu.classList.contains("open")
-          ? "bi bi-x-lg"
-          : "bi bi-list";
+        mobileMenu.classList.contains("open") ? closeMenu() : openMenu();
       });
+
+      closeBtn.addEventListener("click", closeMenu);
+      backdrop.addEventListener("click", closeMenu);
+      mobileBrand.addEventListener("click", closeMenu);
+      mobileContact.addEventListener("click", closeMenu);
 
       document.querySelectorAll(".mobile-nav-link").forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.remove("open");
-          toggler.querySelector("i").className = "bi bi-list";
-        });
+        link.addEventListener("click", closeMenu);
       });
 
-      document.addEventListener("click", (e) => {
-        if (!toggler.contains(e.target) && !mobileMenu.contains(e.target)) {
-          mobileMenu.classList.remove("open");
-          toggler.querySelector("i").className = "bi bi-list";
-        }
+      // Close on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeMenu();
       });
 
       // ==============================
