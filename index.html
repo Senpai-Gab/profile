@@ -856,27 +856,34 @@
           </div>
 
           <div class="contact-form-wrap" data-aos="fade-left">
-            <form class="panel contact-form" id="contact-form">
+            <div class="panel contact-form" style="display: flex; flex-direction: column; height: 100%;">
               <div class="panel-label">
-                <i class="fa-solid fa-paper-plane"></i> TRANSMIT_MESSAGE
+                <i class="fa-solid fa-satellite-dish"></i> COMM_STATUS
               </div>
-              <label class="form-field">
-                <span>Name</span>
-                <input type="text" name="name" required placeholder="Your name" />
-              </label>
-              <label class="form-field">
-                <span>Email</span>
-                <input type="email" name="email" required placeholder="you@example.com" />
-              </label>
-              <label class="form-field">
-                <span>Message</span>
-                <textarea name="message" rows="5" required placeholder="Say something..."></textarea>
-              </label>
-              <button type="submit" class="btn btn--primary btn--full">
-                <i class="fa-solid fa-signal"></i> Send Transmission
-              </button>
-              <p class="form-status" id="form-status" role="status"></p>
-            </form>
+              <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 1.5rem; margin-top: 1rem;">
+                <div>
+                  <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.1rem; text-transform: uppercase;">
+                    <i class="fa-solid fa-signal" style="margin-right: 0.5rem;"></i> Transmission Status
+                  </h4>
+                  <p style="color: var(--text-dim); line-height: 1.6; font-size: 0.95rem;">
+                    Direct terminal access is currently restricted. Secure channels are open for new opportunities, freelance contracts, and system collaborations.
+                  </p>
+                </div>
+                <div>
+                  <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.1rem; text-transform: uppercase;">
+                    <i class="fa-solid fa-clock" style="margin-right: 0.5rem;"></i> Response Protocol
+                  </h4>
+                  <p style="color: var(--text-dim); line-height: 1.6; font-size: 0.95rem;">
+                    Standard ACK time is within 24 hours (PHT/UTC+8). For high-priority communications, please initialize contact via direct email or LinkedIn data streams.
+                  </p>
+                </div>
+                <div style="margin-top: 1rem;">
+                  <a href="mailto:gab.verastigue7625@gmail.com" class="btn btn--primary btn--full" style="justify-content: center;">
+                    <i class="fa-solid fa-envelope"></i> INITIALIZE_EMAIL
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -345,20 +345,7 @@
   }
 
 
-  /* ---------- CONTACT FORM (front-end only demo) ---------- */
-  function initContactForm(){
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('form-status');
-    if(!form) return;
-    form.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      if(status) status.textContent = '> TRANSMITTING...';
-      setTimeout(()=>{
-        if(status) status.textContent = '> MESSAGE QUEUED. Gabriel will respond via email shortly.';
-        form.reset();
-      }, 900);
-    });
-  }
+
 
   /* ---------- FOOTER YEAR ---------- */
   function initFooterYear(){
@@ -408,7 +395,7 @@
     initCounters();
     initSkillBars();
 
-    initContactForm();
+
     initFooterYear();
     initCursor();
     initParticles();
