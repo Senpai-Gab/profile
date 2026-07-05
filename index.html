@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Portfolio of Gabriel Verastigue</title>
+  <meta name="description"
+    content="Gabriel V. Verastigue - IT Specialist, Hardware Technician &amp; Full-Stack Web Developer. Banking IT support, ATM &amp; CCTV systems, PHP/MySQL, AWS." />
+  <link rel="icon" href="assets/imgs/neo-alert-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&family=Audiowide&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="assets/css/main.css?v=4" />
+</head>
+
+<body>
+  <!-- ============ BOOT / LOADING SCREEN ============ -->
+  <div id="boot-screen" aria-hidden="true">
+    <div class="boot-inner">
+      <div class="boot-logo">GVV<span>_OS</span></div>
+      <div class="boot-log" id="boot-log"></div>
+      <div class="boot-bar-track">
+        <div class="boot-bar-fill" id="boot-bar-fill"></div>
+      </div>
+      <div class="boot-pct" id="boot-pct">0%</div>
+    </div>
+    <div class="boot-scan"></div>
+  </div>
+
+  <!-- ============ AMBIENT LAYERS ============ -->
+  <div class="scanline-overlay" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- ============ SCROLL PROGRESS ============ -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="site-nav" id="site-nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <span class="nav-logo-bracket">[</span>GVV<span class="nav-logo-bracket">]</span>
+        <span class="nav-logo-sub">v2.0.26</span>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#hero" class="nav-link active" data-section="hero"><span class="nav-idx">00</span>Home</a>
+        <a href="#about" class="nav-link" data-section="about"><span class="nav-idx">01</span>About</a>
+        <a href="#skills" class="nav-link" data-section="skills"><span class="nav-idx">02</span>Skills</a>
+        <a href="#experience" class="nav-link" data-section="experience"><span class="nav-idx">03</span>Work</a>
+        <a href="#projects" class="nav-link" data-section="projects"><span class="nav-idx">04</span>Projects</a>
+        <a href="#certifications" class="nav-link" data-section="certifications"><span
+            class="nav-idx">05</span>Certs</a>
+        <a href="#education" class="nav-link" data-section="education"><span class="nav-idx">06</span>Edu</a>
+        <a href="#contact" class="nav-link" data-section="contact"><span class="nav-idx">07</span>Contact</a>
+      </nav>
+
+      <div class="nav-right">
+        <div class="nav-clock" id="nav-clock">00:00:00</div>
+        <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile nav drawer (outside header to avoid stacking context issues) -->
+  <nav class="nav-mobile" id="nav-mobile" aria-label="Mobile navigation">
+    <a href="#hero" class="nav-mobile-link" data-section="hero">00 // Home</a>
+    <a href="#about" class="nav-mobile-link" data-section="about">01 // About</a>
+    <a href="#skills" class="nav-mobile-link" data-section="skills">02 // Skills</a>
+    <a href="#experience" class="nav-mobile-link" data-section="experience">03 // Work</a>
+    <a href="#projects" class="nav-mobile-link" data-section="projects">04 // Projects</a>
+    <a href="#certifications" class="nav-mobile-link" data-section="certifications">05 // Certs</a>
+    <a href="#education" class="nav-mobile-link" data-section="education">06 // Edu</a>
+    <a href="#contact" class="nav-mobile-link" data-section="contact">07 // Contact</a>
+  </nav>
+
+  <!-- Mobile nav backdrop -->
+  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+  <main>
+    <!-- ============ HERO ============ -->
+    <section id="hero" class="hero">
+      <div class="hero-bg">
+        <img class="hero-video" src="assets/imgs/hero-poster.png" alt="Hero Background" />
+        <div class="hero-bg-fallback"></div>
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+
+      <div class="hud-corner hud-corner--tl"></div>
+      <div class="hud-corner hud-corner--tr"></div>
+      <div class="hud-corner hud-corner--bl"></div>
+      <div class="hud-corner hud-corner--br"></div>
+
+      <div class="hero-hud-tag hero-hud-tag--left">
+        STATUS: <span class="hud-green">ONLINE</span>
+      </div>
+      <div class="hero-hud-tag hero-hud-tag--right">LOC: ATIMONAN, PH</div>
+
+      <div class="hero-content">
+        <p class="hero-greeting">
+          <span class="terminal-caret">&gt;</span> ACCESSING PROFILE_DATA...
+        </p>
+        <h1 class="hero-name" data-glitch="GABRIEL VERASTIGUE">
+          GABRIEL VERASTIGUE
+        </h1>
+        <h2 class="hero-title">
+          <span id="typed-title"></span><span class="typed-cursor">_</span>
+        </h2>
+        <p class="hero-intro">
+          IT Specialist &amp; Full-Stack Web Developer with 2+ years of hands-on experience in banking systems,
+          ATM maintenance, CCTV &amp; network infrastructure, and web application development using PHP, MySQL &amp;
+          AWS.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn--primary"><i class="fa-solid fa-diagram-project"></i> View Projects</a>
+          <a href="#contact" class="btn btn--outline"><i class="fa-solid fa-satellite-dish"></i> Contact Me</a>
+          <a href="assets/resume/Gabriel_Verastigue.pdf" class="btn btn--outline" target="_blank" rel="noopener"><i
+              class="fa-solid fa-download"></i> Download Resume</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="2" data-suffix="+">0</span><span class="hero-stat-label">Years
+              Exp.</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="9">0</span><span class="hero-stat-label">Projects</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num-static">BS</span><span class="hero-stat-label">Comp. Science</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="#about" class="scroll-indicator" aria-label="Scroll down">
+        <span>SCROLL</span>
+        <div class="scroll-indicator-line"></div>
+      </a>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="section">
+      <div class="section-inner">
+        <p class="section-eyebrow" data-aos="fade-up">WHO_I_AM</p>
+        <h2 class="section-title" data-aos="fade-up">About Me</h2>
+
+        <div class="about-grid">
+          <div class="about-media" data-aos="fade-right">
+            <div class="panel panel--frame about-photo-frame">
+              <img src="assets/imgs/profile.jpg" alt="Gabriel V. Verastigue" class="about-photo" />
+              <div class="panel-corner panel-corner--tl"></div>
+              <div class="panel-corner panel-corner--br"></div>
+              <div class="about-photo-scan"></div>
+            </div>
+            <a href="assets/resume/Gabriel_Verastigue.pdf" class="btn btn--outline about-resume-btn" target="_blank"
+              rel="noopener">
+              <i class="fa-solid fa-file-arrow-down"></i> Download Resume
+            </a>
+          </div>
+
+          <div class="about-content" data-aos="fade-left">
+            <div class="panel about-panel">
+              <div class="panel-label">
+                <i class="fa-solid fa-terminal"></i> OBJECTIVE.LOG
+              </div>
+              <p class="about-lead">
+                Detail-oriented IT Specialist and Full-Stack Web Developer with a passion for building reliable systems
+                and clean web experiences.
+              </p>
+              <p>
+                2+ years of hands-on experience in banking technology operations, computer hardware troubleshooting,
+                ATM machine maintenance, and network infrastructure management. Skilled in multi-ISP network setup,
+                LAN/WAN administration, CCTV installation, and full-stack web development.
+              </p>
+              <p>
+                At Bayanihan Bank Inc., designed and developed 4 web-based applications including a Cloud Storage
+                System,
+                Collateral Management System, IT Ticketing System, and a corporate website with CMS. Developed and
+                optimized SQL queries for regulatory banking reports (CIC &amp; BSP COCREE), and performed data
+                validation during core banking system migration for 100+ users across 29 branches.
+              </p>
+              <p>
+                Combines strong analytical thinking, practical technical skills, and a proactive work ethic to drive
+                system uptime and operational efficiency — now open to new opportunities to grow and contribute.
+              </p>
+            </div>
+            <div class="panel about-panel">
+              <div class="panel-label">
+                <i class="fa-solid fa-id-badge"></i> TRAITS.SYS
+              </div>
+              <div class="tag-cloud">
+                <span class="tag">Attention to Detail</span>
+                <span class="tag">Team Collaboration</span>
+                <span class="tag">Adaptability</span>
+                <span class="tag">Works Under Pressure</span>
+                <span class="tag">Problem Solving</span>
+                <span class="tag">Analytical Thinking</span>
+                <span class="tag">Communication</span>
+              </div>
+            </div>
+
+            <div class="panel about-panel">
+              <div class="panel-label">
+                <i class="fa-solid fa-graduation-cap"></i> COURSEWORK.DB
+              </div>
+              <div class="tag-cloud">
+                <span class="tag">Data Structures</span>
+                <span class="tag">Database Systems</span>
+                <span class="tag">Web Development</span>
+                <span class="tag">Object-Oriented Programming</span>
+                <span class="tag">Computer Networks</span>
+              </div>
+            </div>
+
+            <div class="about-quickfacts">
+              <div class="quickfact">
+                <span class="quickfact-num" data-count="2" data-suffix="+">0</span><span class="quickfact-label">Years
+                  of Experience</span>
+              </div>
+              <div class="quickfact">
+                <span class="quickfact-num" data-count="9">0</span><span class="quickfact-label">Projects
+                  Completed</span>
+              </div>
+              <div class="quickfact">
+                <span class="quickfact-num" data-count="100" data-suffix="+">0</span><span class="quickfact-label">Users
+                  Supported</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section id="skills" class="section section--alt">
+      <div class="section-inner">
+        <p class="section-eyebrow" data-aos="fade-up">TECHNICAL_PROFICIENCY</p>
+        <h2 class="section-title" data-aos="fade-up">Skills &amp; Expertise</h2>
+        <p class="section-sub" data-aos="fade-up">
+          A dual-track skill set covering hardware infrastructure and full-stack software development.
+        </p>
+
+        <div class="skills-grid" id="skills-grid">
+
+          <!-- Hardware & Infrastructure -->
+          <div class="panel skill-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="skill-card-head">
+              <i class="fa-solid fa-network-wired skill-icon"></i>
+              <h3>Network &amp; Infrastructure</h3>
+            </div>
+            <div class="skill-bar" data-value="90">
+              <span class="skill-bar-name">LAN/WAN Administration</span><span class="skill-bar-pct">90%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar" data-value="88">
+              <span class="skill-bar-name">Multi-ISP Configuration &amp; Failover</span><span
+                class="skill-bar-pct">88%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar" data-value="85">
+              <span class="skill-bar-name">Router &amp; Access Point Setup (Omada)</span><span
+                class="skill-bar-pct">85%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar" data-value="88">
+              <span class="skill-bar-name">CCTV Installation &amp; Maintenance</span><span
+                class="skill-bar-pct">88%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <p class="skill-card-note">TP-Link NVR, CAT6 cabling, RJ45 termination — Starlink, Globe, PLDT ISP
+              management.</p>
+          </div>
+
+          <!-- Hardware Support -->
+          <div class="panel skill-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="skill-card-head">
+              <i class="fa-solid fa-screwdriver-wrench skill-icon"></i>
+              <h3>Hardware &amp; IT Support</h3>
+            </div>
+            <div class="skill-bar" data-value="92">
+              <span class="skill-bar-name">IT Troubleshooting &amp; Support</span><span class="skill-bar-pct">92%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar" data-value="90">
+              <span class="skill-bar-name">ATM Maintenance &amp; Technical Support</span><span
+                class="skill-bar-pct">90%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar" data-value="88">
+              <span class="skill-bar-name">Hardware Diagnostics &amp; Repair</span><span
+                class="skill-bar-pct">88%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar" data-value="85">
+              <span class="skill-bar-name">VPN Troubleshooting</span><span class="skill-bar-pct">85%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Web / Backend -->
+          <div class="panel skill-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="skill-card-head">
+              <i class="fa-solid fa-code skill-icon"></i>
+              <h3>Web &amp; Backend Development</h3>
+            </div>
+            <div class="skill-bar" data-value="88">
+              <span class="skill-bar-name">PHP (Native / Core PHP)</span><span class="skill-bar-pct">88%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar" data-value="88">
+              <span class="skill-bar-name">JavaScript / HTML5 / CSS3</span><span class="skill-bar-pct">88%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar" data-value="85">
+              <span class="skill-bar-name">Bootstrap 5 / AJAX / DataTables.js</span><span
+                class="skill-bar-pct">85%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar" data-value="80">
+              <span class="skill-bar-name">RESTful API Development</span><span class="skill-bar-pct">80%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Database & Data -->
+          <div class="panel skill-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="skill-card-head">
+              <i class="fa-solid fa-database skill-icon"></i>
+              <h3>Database &amp; Data Management</h3>
+            </div>
+            <div class="skill-bar" data-value="88">
+              <span class="skill-bar-name">MySQL / SQL Query Optimization</span><span class="skill-bar-pct">88%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar" data-value="80">
+              <span class="skill-bar-name">Data Validation &amp; Reconciliation</span><span
+                class="skill-bar-pct">80%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar" data-value="78">
+              <span class="skill-bar-name">Regulatory Report Development (CIC, BSP)</span><span
+                class="skill-bar-pct">78%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <p class="skill-card-note">Also familiar with PostgreSQL, SQLite, Oracle. Core banking database experience.
+            </p>
+          </div>
+
+          <!-- DevOps / Cloud -->
+          <div class="panel skill-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="skill-card-head">
+              <i class="fa-brands fa-aws skill-icon"></i>
+              <h3>Tools, Cloud &amp; DevOps</h3>
+            </div>
+            <div class="skill-bar" data-value="80">
+              <span class="skill-bar-name">AWS EC2 &amp; S3</span><span class="skill-bar-pct">80%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar" data-value="82">
+              <span class="skill-bar-name">Git &amp; GitHub</span><span class="skill-bar-pct">82%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar" data-value="85">
+              <span class="skill-bar-name">XAMPP / Apache / Ubuntu Linux</span><span class="skill-bar-pct">85%</span>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <p class="skill-card-note">Deployment, server administration, and cloud-based file management using AWS.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="experience" class="section">
+      <div class="section-inner">
+        <p class="section-eyebrow" data-aos="fade-up">PROFESSIONAL_JOURNEY</p>
+        <h2 class="section-title" data-aos="fade-up">Work Experience</h2>
+        <p class="section-sub" data-aos="fade-up">
+          Building reliable, secure, and efficient IT systems and web applications in the banking sector.
+        </p>
+
+        <div class="timeline" id="experience-timeline">
+
+          <!-- Bayanihan Bank -->
+          <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-node"></div>
+            <div class="panel timeline-panel">
+              <div class="timeline-head">
+                <div>
+                  <h3>IT Specialist &amp; Hardware Technician / Full-Stack Developer</h3>
+                  <p class="timeline-company">Bayanihan Bank Inc.</p>
+                </div>
+                <span class="timeline-date">Nov 2023 — Jun 2026 · Full-Time · On-site, Atimonan, Quezon</span>
+              </div>
+
+              <p
+                style="color: var(--c-cyan); font-family: var(--f-mono); font-size: .72rem; letter-spacing: .06em; margin-bottom: .75rem; text-transform: uppercase;">
+                <i class="fa-solid fa-server" style="margin-right:.4rem;"></i> Hardware &amp; Infrastructure
+              </p>
+              <ul class="timeline-list">
+                <li>Installed and maintained TP-Link NVR CCTV systems, including CAT6 cabling, RJ45 termination, camera
+                  deployment, testing, and troubleshooting.</li>
+                <li>Designed and supported network infrastructure using Omada ER7206 and EAP610 with multi-ISP failover
+                  (Starlink, Globe, PLDT) to maintain stable connectivity.</li>
+                <li>Resolved network incidents by diagnosing ISP outages, hardware failures, and switch/mesh issues
+                  while coordinating with vendors to reduce downtime.</li>
+                <li>Diagnosed and repaired desktops, laptops, and ATMs through preventive maintenance, hardware
+                  replacement, VPN troubleshooting, and vendor coordination.</li>
+                <li>Monitored system and ATM uptime, analyzed recurring failures, and recommended improvements to
+                  strengthen reliability and service continuity.</li>
+              </ul>
+
+              <p
+                style="color: var(--c-cyan); font-family: var(--f-mono); font-size: .72rem; letter-spacing: .06em; margin-bottom: .75rem; text-transform: uppercase;">
+                <i class="fa-solid fa-code" style="margin-right:.4rem;"></i> Software &amp; Web Development
+              </p>
+              <ul class="timeline-list">
+                <li>Designed and developed 4 web-based applications: Cloud Storage System, Collateral Management System,
+                  IT Ticketing System, and a corporate website with a custom CMS.</li>
+                <li>Developed 20+ database-driven modules including user authentication, document management, content
+                  management, reporting, and administrative functions.</li>
+                <li>Developed and optimized SQL queries for regulatory banking reports (CIC and BSP COCREE) by
+                  extracting, validating, and transforming data from the core banking database for monthly reporting.
+                </li>
+                <li>Performed data validation and reconciliation during core banking system migration to ensure accurate
+                  client account data transfer.</li>
+                <li>Provided technical support, system maintenance, and troubleshooting for 100+ users across 29 branch
+                  locations.</li>
+                <li>Built and published Neo Alert and Neo Select — open-source JavaScript libraries used in internal and
+                  external web projects.</li>
+              </ul>
+
+              <div class="tag-cloud">
+                <span class="tag tag--sm">PHP</span>
+                <span class="tag tag--sm">MySQL</span>
+                <span class="tag tag--sm">JavaScript</span>
+                <span class="tag tag--sm">Bootstrap 5</span>
+                <span class="tag tag--sm">AWS S3</span>
+                <span class="tag tag--sm">AWS EC2</span>
+                <span class="tag tag--sm">RESTful API</span>
+                <span class="tag tag--sm">ATM Maintenance</span>
+                <span class="tag tag--sm">CCTV</span>
+                <span class="tag tag--sm">LAN/WAN</span>
+                <span class="tag tag--sm">Omada</span>
+                <span class="tag tag--sm">Core Banking</span>
+                <span class="tag tag--sm">VPN</span>
+              </div>
+            </div>
+          </div>
+          <!-- Asian Business Solution Internship -->
+          <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-node"></div>
+            <div class="panel timeline-panel">
+              <div class="timeline-head">
+                <div>
+                  <h3>Web &amp; Software Developer</h3>
+                  <p class="timeline-company">Asian Business Solution, Inc.</p>
+                </div>
+                <span class="timeline-date">Apr 2023 — Jun 2023 · Internship · On-site, Atimonan, Quezon</span>
+              </div>
+              <ul class="timeline-list">
+                <li>Assisted in developing and maintaining 5+ web application pages with a focus on responsive and
+                  user-friendly frontend design across desktop and mobile devices.</li>
+                <li>Built and implemented 5+ frontend features and UI components using HTML, CSS, and JavaScript to
+                  improve usability and page interaction.</li>
+                <li>Collaborated with team members to translate project requirements into functional interfaces and
+                  contributed to multiple design revisions and feature enhancements.</li>
+                <li>Performed testing, debugging, and UI adjustments, helping identify and resolve 10+ frontend display
+                  and functionality issues during development.</li>
+                <li>Participated in project documentation and development activities that contributed to on-time
+                  delivery of assigned tasks during the internship period.</li>
+              </ul>
+              <div class="tag-cloud">
+                <span class="tag tag--sm">JavaScript</span>
+                <span class="tag tag--sm">HTML5 / CSS3</span>
+                <span class="tag tag--sm">Bootstrap</span>
+                <span class="tag tag--sm">Responsive Design</span>
+                <span class="tag tag--sm">UI Testing</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects" class="section section--alt">
+      <div class="section-inner">
+        <p class="section-eyebrow" data-aos="fade-up">WHAT_IVE_BUILT</p>
+        <h2 class="section-title" data-aos="fade-up">Projects</h2>
+        <p class="section-sub" data-aos="fade-up">
+          Real-world systems, open-source libraries, and academic projects — built to solve actual problems.
+        </p>
+
+        <div class="projects-grid" id="projects-grid">
+
+          <!-- IT Ticketing System -->
+          <article class="panel project-card" data-category="Management System" data-aos="fade-up">
+            <div class="project-card-top">
+              <span class="project-type">Management System</span>
+              <span class="project-badge">Company Owned</span>
+            </div>
+            <h3>IT Ticketing System</h3>
+            <p>
+              A centralized IT helpdesk platform supporting 100+ users to streamline support request submission,
+              tracking, and resolution. Features ticket categorization, prioritization, role-based authentication
+              (3 roles), file attachments, and real-time dashboards for monitoring technician workload and service
+              performance.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag--sm">PHP</span>
+              <span class="tag tag--sm">MySQL</span>
+              <span class="tag tag--sm">JavaScript</span>
+              <span class="tag tag--sm">Bootstrap</span>
+            </div>
+            <div class="project-actions">
+              <span class="project-locked"><i class="fa-solid fa-lock"></i> Private / Internal System</span>
+            </div>
+          </article>
+
+          <!-- Collateral Management System -->
+          <article class="panel project-card" data-category="Management System" data-aos="fade-up">
+            <div class="project-card-top">
+              <span class="project-type">Management System</span>
+              <span class="project-badge">Company Owned</span>
+            </div>
+            <h3>Collateral Management System</h3>
+            <p>
+              A banking collateral system with 20+ database-driven modules for storing and managing loan collateral
+              records. Features secure document uploads (scanned docs &amp; photos), advanced search across 5+ fields
+              (loan number, customer, asset type, collateral status), and role-based access control for 3 user levels.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag--sm">PHP</span>
+              <span class="tag tag--sm">MySQL</span>
+              <span class="tag tag--sm">JavaScript</span>
+              <span class="tag tag--sm">Bootstrap</span>
+            </div>
+            <div class="project-actions">
+              <span class="project-locked"><i class="fa-solid fa-lock"></i> Private / Internal System</span>
+            </div>
+          </article>
+
+          <!-- Cloud Storage System -->
+          <article class="panel project-card" data-category="Web Application" data-aos="fade-up">
+            <div class="project-card-top">
+              <span class="project-type">Web Application</span>
+              <span class="project-badge">Company Owned</span>
+            </div>
+            <h3>Cloud Storage System</h3>
+            <p>
+              A secure web-based file management platform supporting 4+ departments. Enabled 20+ staff to upload,
+              organize, and retrieve files remotely via AWS S3. Digitized and centralized 100+ organizational records,
+              reducing manual document handling and supporting the bank's shift to cloud-based operations.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag--sm">PHP</span>
+              <span class="tag tag--sm">MySQL</span>
+              <span class="tag tag--sm">JavaScript</span>
+              <span class="tag tag--sm">Bootstrap</span>
+              <span class="tag tag--sm">AWS S3</span>
+              <span class="tag tag--sm">RESTful API</span>
+            </div>
+            <div class="project-actions">
+              <span class="project-locked"><i class="fa-solid fa-lock"></i> Private / Internal System</span>
+            </div>
+          </article>
+          <!-- Bayanihan Bank Website + CMS -->
+          <article class="panel project-card" data-category="Web Page" data-aos="fade-up">
+            <div class="project-card-top">
+              <span class="project-type">Web Page</span>
+              <span class="project-badge">Live</span>
+            </div>
+            <h3>Bayanihan Bank Website &amp; CMS</h3>
+            <p>
+              The official public-facing website for Bayanihan Bank, showcasing its services, loan products,
+              savings offerings, and announcements. Includes a custom-built Content Management System (CMS)
+              for staff to manage content without technical knowledge. Built for performance and professional first
+              impression.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag--sm">PHP</span>
+              <span class="tag tag--sm">MySQL</span>
+              <span class="tag tag--sm">Bootstrap</span>
+              <span class="tag tag--sm">HTML/CSS</span>
+              <span class="tag tag--sm">CMS</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://bayanihanbank.com" target="_blank" rel="noopener" class="btn btn--sm btn--outline">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Site
+              </a>
+            </div>
+          </article>
+
+          <!-- Neo Alert -->
+          <article class="panel project-card" data-category="JavaScript Library" data-aos="fade-up">
+            <div class="project-card-top">
+              <span class="project-type">JavaScript Library</span>
+              <span class="project-badge project-badge--open">Open Source</span>
+            </div>
+            <h3>Neo Alert</h3>
+            <p>
+              A lightweight open-source JavaScript notification library with four alert types — success, error,
+              warning, and info. Drops into any web project with a single script tag and zero dependencies.
+              Used internally and in external web projects.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag--sm">JavaScript</span>
+              <span class="tag tag--sm">HTML/CSS</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://senpai-gab.github.io/neo-alert/" target="_blank" rel="noopener"
+                class="btn btn--sm btn--outline"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+              <a href="https://github.com/Senpai-Gab/" target="_blank" rel="noopener" class="btn btn--sm btn--ghost"><i
+                  class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </article>
+
+          <!-- Neo Select -->
+          <article class="panel project-card" data-category="JavaScript Library" data-aos="fade-up">
+            <div class="project-card-top">
+              <span class="project-type">JavaScript Library</span>
+              <span class="project-badge project-badge--open">Open Source</span>
+            </div>
+            <h3>Neo Select</h3>
+            <p>
+              An open-source JavaScript library for building custom single-select and multi-select dropdowns with
+              built-in search. Fully responsive and replaces clunky native HTML selects with a smooth, polished
+              component. Used across internal and external web projects.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag--sm">JavaScript</span>
+              <span class="tag tag--sm">HTML/CSS</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://senpai-gab.github.io/neo-select/" target="_blank" rel="noopener"
+                class="btn btn--sm btn--outline"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+              <a href="https://github.com/Senpai-Gab/" target="_blank" rel="noopener" class="btn btn--sm btn--ghost"><i
+                  class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </article>
+
+          <!-- Hotel & Event Booking System -->
+          <article class="panel project-card" data-category="Web Application" data-aos="fade-up">
+            <div class="project-card-top">
+              <span class="project-type">Web Application</span>
+              <span class="project-badge project-badge--academic">Academic</span>
+            </div>
+            <h3>Hotel &amp; Event Booking System</h3>
+            <p>
+              A full-stack hotel and event booking system developed as a college capstone project. Features room
+              browsing, event listings, online reservations, and a booking management dashboard.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag--sm">PHP</span>
+              <span class="tag tag--sm">MySQL</span>
+              <span class="tag tag--sm">Bootstrap</span>
+              <span class="tag tag--sm">HTML/CSS</span>
+            </div>
+            <div class="project-actions">
+              <span class="project-locked"><i class="fa-solid fa-graduation-cap"></i> Academic Project</span>
+            </div>
+          </article>
+
+          <!-- Money Flows System -->
+          <article class="panel project-card" data-category="Management System" data-aos="fade-up">
+            <div class="project-card-top">
+              <span class="project-type">Management System</span>
+              <span class="project-badge project-badge--academic">Thesis</span>
+            </div>
+            <h3>Money Flows System</h3>
+            <p>
+              A financial monitoring system built as a thesis project to track income, expenses, and cash flow.
+              Features detailed reports and visual dashboards for analyzing spending patterns.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag--sm">PHP</span>
+              <span class="tag tag--sm">MySQL</span>
+              <span class="tag tag--sm">Bootstrap</span>
+              <span class="tag tag--sm">HTML/CSS</span>
+            </div>
+            <div class="project-actions">
+              <span class="project-locked"><i class="fa-solid fa-graduation-cap"></i> Academic / Thesis Project</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CERTIFICATIONS ============ -->
+    <section id="certifications" class="section">
+      <div class="section-inner">
+        <p class="section-eyebrow" data-aos="fade-up">CREDENTIALS.DB</p>
+        <h2 class="section-title" data-aos="fade-up">Certifications</h2>
+        <div class="projects-grid">
+          <article class="panel project-card" data-aos="fade-up">
+            <div class="project-card-top">
+              <span class="project-type"><i class="fa-solid fa-award" style="margin-right: 5px;"></i>
+                Certification</span>
+              <span class="project-badge">Cisco</span>
+            </div>
+            <h3>Networking Basics</h3>
+            <p>
+              Completed the Cisco Networking Basics certification, covering foundational networking concepts, network
+              architecture, LAN/WAN setup, and basic configuration.
+            </p>
+            <div class="tag-cloud">
+              <span class="tag tag--sm">Networking</span>
+              <span class="tag tag--sm">Cisco</span>
+              <span class="tag tag--sm">Infrastructure</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- ============ EDUCATION ============ -->
+    <section id="education" class="section section--alt">
+      <div class="section-inner">
+        <p class="section-eyebrow" data-aos="fade-up">ACADEMIC_BACKGROUND</p>
+        <h2 class="section-title" data-aos="fade-up">Education</h2>
+
+        <div class="timeline timeline--edu" id="education-timeline">
+          <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-node"></div>
+            <div class="panel timeline-panel">
+              <div class="timeline-head">
+                <div>
+                  <h3>Bachelor of Science in Computer Science</h3>
+                  <p class="timeline-company">Quezonian Educational College, Inc. — Atimonan, Quezon</p>
+                </div>
+                <span class="timeline-date">Jun 2019 — Jul 2023</span>
+              </div>
+              <p>
+                Studied core computer science concepts including programming, data structures, and database systems.
+                Gained hands-on experience in web development using PHP, MySQL, HTML, CSS, and JavaScript, and developed
+                practical projects including web-based systems. <strong style="color: var(--c-cyan);">CGPA:
+                  1.60</strong>
+              </p>
+              <div class="tag-cloud">
+                <span class="tag tag--sm">Data Structures</span>
+                <span class="tag tag--sm">Database Systems</span>
+                <span class="tag tag--sm">Web Development</span>
+                <span class="tag tag--sm">Object-Oriented Programming</span>
+                <span class="tag tag--sm">Computer Networks</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="section">
+      <div class="section-inner">
+        <p class="section-eyebrow" data-aos="fade-up">LETS_CONNECT</p>
+        <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+        <p class="section-sub" data-aos="fade-up">
+          Open to new opportunities, collaborations, or just a conversation.
+        </p>
+
+        <div class="contact-grid">
+          <div class="contact-info" data-aos="fade-right">
+            <div class="panel contact-panel">
+              <a class="contact-row" href="mailto:gab.verastigue7625@gmail.com">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                  <span class="contact-label">Email</span>
+                  <span class="contact-value">gab.verastigue7625@gmail.com</span>
+                </div>
+              </a>
+              <a class="contact-row" href="tel:+639291992293">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                  <span class="contact-label">Phone</span>
+                  <span class="contact-value">+63 929 199 2293</span>
+                </div>
+              </a>
+              <div class="contact-row contact-row--static">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                  <span class="contact-label">Location</span>
+                  <span class="contact-value">Atimonan, Quezon, Philippines</span>
+                </div>
+              </div>
+              <a class="contact-row" href="https://github.com/Senpai-Gab/" target="_blank" rel="noopener">
+                <i class="fa-brands fa-github"></i>
+                <div>
+                  <span class="contact-label">GitHub</span>
+                  <span class="contact-value">github.com/Senpai-Gab</span>
+                </div>
+              </a>
+              <a class="contact-row" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+                <i class="fa-brands fa-linkedin"></i>
+                <div>
+                  <span class="contact-label">LinkedIn</span>
+                  <span class="contact-value">Connect on LinkedIn</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="panel map-placeholder">
+              <div class="map-grid"></div>
+              <div class="map-pin">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <span class="map-label">ATIMONAN, QUEZON PROVINCE, PH</span>
+            </div>
+          </div>
+
+          <div class="contact-form-wrap" data-aos="fade-left">
+            <form class="panel contact-form" id="contact-form">
+              <div class="panel-label">
+                <i class="fa-solid fa-paper-plane"></i> TRANSMIT_MESSAGE
+              </div>
+              <label class="form-field">
+                <span>Name</span>
+                <input type="text" name="name" required placeholder="Your name" />
+              </label>
+              <label class="form-field">
+                <span>Email</span>
+                <input type="email" name="email" required placeholder="you@example.com" />
+              </label>
+              <label class="form-field">
+                <span>Message</span>
+                <textarea name="message" rows="5" required placeholder="Say something..."></textarea>
+              </label>
+              <button type="submit" class="btn btn--primary btn--full">
+                <i class="fa-solid fa-signal"></i> Send Transmission
+              </button>
+              <p class="form-status" id="form-status" role="status"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-hud-line"></div>
+    <div class="footer-inner">
+      <div class="footer-social">
+        <a href="https://github.com/Senpai-Gab/" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="mailto:gab.verastigue7625@gmail.com" aria-label="Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+      <p class="footer-copy">
+        Gabriel V. Verastigue — Designed &amp; developed with care · ©
+        <span id="footer-year"></span> All rights reserved.
+      </p>
+      <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+      </button>
+    </div>
+  </footer>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
