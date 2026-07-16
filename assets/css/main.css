@@ -1432,6 +1432,74 @@ body::before {
   flex-grow: 1;
 }
 
+.cert-badge-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, .02);
+  border: 1px solid var(--c-ink-dim);
+  border-radius: var(--radius);
+  position: relative;
+}
+
+.cert-badge-wrap::before {
+  content: "VERIFIED_CREDENTIAL";
+  position: absolute;
+  top: -.55em;
+  left: 1rem;
+  padding: 0 .5em;
+  background: var(--c-black);
+  font-family: var(--f-mono);
+  font-size: .6rem;
+  letter-spacing: .08em;
+  color: var(--c-cyan);
+}
+
+.cert-badge-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  text-decoration: none;
+}
+
+.cert-badge-img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 12px rgba(0, 245, 255, .25));
+  transition: transform .25s ease, filter .25s ease;
+}
+
+.cert-badge-link:hover .cert-badge-img {
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 18px rgba(0, 245, 255, .45));
+}
+
+.cert-badge-verify {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  font-family: var(--f-mono);
+  font-size: .68rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--c-ink-dim);
+  border: 1px solid var(--c-ink-dim);
+  padding: .35rem .7rem;
+  border-radius: var(--radius);
+  transition: all .25s ease;
+}
+
+.cert-badge-link:hover .cert-badge-verify {
+  color: var(--c-cyan);
+  border-color: var(--c-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
 .project-actions {
   display: flex;
   gap: .75rem;
